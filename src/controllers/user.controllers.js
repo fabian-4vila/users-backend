@@ -30,7 +30,7 @@ const updateUser = catchError(async(req,res) => {
         { email, password, first_name, last_name, birthday },
         {where: { id:id }, returning: true}
     );
-    return res.json(user);
+    return res.json(user[1][0]);
 })
 
 module.exports={
