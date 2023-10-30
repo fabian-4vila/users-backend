@@ -13,6 +13,11 @@ const create = catchError(async(req,res) => {
     });
     return res.status(201).json(user);
 });
+const getUser = catchError(async(req,res) => {
+    const { id } = req.params;
+    const user = await User.findByPk(id);
+    return res.json(user);
+})
 const remove = catchError(async(req,res) => {
     const { id } = req.params;
     await User.destroy({where: { id : id }});
@@ -31,6 +36,7 @@ const updateUser = catchError(async(req,res) => {
 module.exports={
     getAll,
     create,
+    getUser,
     remove,
     updateUser
 }
